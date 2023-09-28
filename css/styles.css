@@ -1,0 +1,100 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+:root{
+  --pri:#120b48;
+  --sec:#605c84
+}
+.content{
+    padding: 2rem;
+    min-width: 300px;
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+    
+    gap: 20px;
+}
+.logo{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding:2px;
+  gap: 2px;
+  color: var(--pri);
+  font-size:24px;
+  font-weight:900;
+  
+}
+ .logo img{
+   width:80%
+ }
+
+.htxt{
+  color: var(--sec);
+}
+
+.option{
+  width:100%;
+  display:flex;
+  justify-content: space-around;
+  color: var(--pri);
+  font-weight:600;
+  
+}
+.option span{
+  width:100%;
+  display:flex;
+  gap:5px;
+  color: var(--pri);
+  font-weight:600;
+  align-items:center;
+  
+}
+
+.accessbutton{
+  position: relative;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-items: center;
+    gap: 16px;
+  
+}
+.accessbutton span{
+  position: relative;
+    width:100%;
+    display:flex;
+  align-items:center;
+    gap: 5px;
+  
+}
+.accessbutton span{
+  border: 2px solid var(--pri);
+  padding:6px;
+  font-size:18px;
+  border-radius:10px;
+}
+.button_cont button{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background: teal;
+    color: white;
+    width: 100%;
+
+}
+
+.button_cont button:hover{
+    box-shadow: 1px 0px 10p #eee;
+}
+
+.button_cont{
+  width:100%;
+}
+
+.button_cont button{
+  background:var(--pri)
+}
