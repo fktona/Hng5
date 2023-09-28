@@ -3,7 +3,7 @@ console.log("Hi, I have been injected whoopie!!!")
 var recorder = null
 function onAccessApproved(stream){
     recorder = new MediaRecorder(stream);
-
+  
     recorder.start();
 
     recorder.onstop = function(){
@@ -18,7 +18,19 @@ function onAccessApproved(stream){
         let recordedBlob  = event.data;
         let url = URL.createObjectURL(recordedBlob);
 
-        let a = document.createElement("a");
+       
+    // Send the recordedBlob data to your server
+    fetch('https://yourserver.com/upload', {
+        method: 'POST',
+        body: recordedBlob,
+    })
+    .then(response => {
+        // Handle the response from the server
+        console.log('Video uploaded successfully.');
+    })
+    .catch(error => {
+        console.error('Error uploading video:', error);
+    });  
 
         a.style.display = "none";
         a.href = url;

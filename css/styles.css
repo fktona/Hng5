@@ -98,3 +98,10 @@
 .button_cont button{
   background:var(--pri)
 }
+
+#video{
+  width: 250px;
+  height:250px;
+  border-radius: 50%;
+  display: none;
+}
