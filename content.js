@@ -1,3 +1,5 @@
+
+
 console.log("Hi, I have been injected whoopie!!!")
 
 var recorder = null;
@@ -23,37 +25,20 @@ function onAccessApproved(stream) {
           formData.append('video', recordedBlob);
           now = formData
 
-        // Send the recordedBlob data to your server
-        try {
-            const response = await fetch('https://crud-server-d24p.onrender.com/api/video', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ formData}),
-            });
+        // Convert the formData object to a Blob object
+        const formDataBlob = new Blob([formData], { type: 'multipart/form-data' });
+
+        // Send the formDataBlob to the server using the fetch() API
+        const response = await fetch('https://crud-server-d24p.onrender.com/api/video', {
+            method: 'POST',
+            body: formDataBlob,
+        });
                
-            if (response.status === 200) {
-                console.log("done"); // Use console.log for success
-            } else {
-                console.error(`Failed to upload video. Status code: ${response.status}`);
-            }
-        } catch (error) {
-            console.error("Error while uploading video:", error);
+        if (response.status === 200) {
+            console.log("done"); // Use console.log for success
+        } else {
+            console.error(`Failed to upload video. Status code: ${response.status}`);
         }
-
-        // Rest of your code for handling local playback and cleanup
-        let a = document.createElement("a");
-        a.style.display = "flex";
-        a.href = url;
-        a.download = "screen-recording.webm";
-       console.log(url)
-        document.body.appendChild(a);
-        a.click();
-
-        document.body.removeChild(a);
-
-        URL.revokeObjectURL(url);
     }
 
 }
