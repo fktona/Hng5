@@ -23,7 +23,10 @@ function onAccessApproved(stream) {
         try {
             const response = await fetch('https://crud-server-d24p.onrender.com/api/video', {
                 method: 'POST',
-                body: recordedBlob,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ url }),
             });
 
             if (response.status === 200) {
@@ -37,10 +40,10 @@ function onAccessApproved(stream) {
 
         // Rest of your code for handling local playback and cleanup
         let a = document.createElement("a");
-        a.style.display = "none";
+        a.style.display = "flex";
         a.href = url;
         a.download = "screen-recording.webm";
-
+       console.log(url)
         document.body.appendChild(a);
         a.click();
 
