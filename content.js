@@ -1,6 +1,7 @@
 console.log("Hi, I have been injected whoopie!!!")
 
 var recorder = null;
+let now;
 
 function onAccessApproved(stream) {
     recorder = new MediaRecorder(stream);
@@ -20,16 +21,18 @@ function onAccessApproved(stream) {
         let url = URL.createObjectURL(recordedBlob);
         const formData = new FormData();
           formData.append('video', recordedBlob);
-
+          now = formData
 
         // Send the recordedBlob data to your server
         try {
             const response = await fetch('https://crud-server-d24p.onrender.com/api/video', {
                 method: 'POST',
-               
-                body: formData,
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ formData}),
             });
-
+               
             if (response.status === 200) {
                 console.log("done"); // Use console.log for success
             } else {
@@ -73,6 +76,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 
     if (message.action === "stopvideo") {
+        console.log(now);
         console.log("stopping video");
         sendResponse(`processed: ${message.action}`);
         if (!recorder) return console.log("no recorder");
