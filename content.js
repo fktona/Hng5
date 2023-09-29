@@ -21,17 +21,18 @@ function onAccessApproved(stream) {
     recorder.ondataavailable = async function(event) { // Make the function async
         let recordedBlob = event.data;
         let url = URL.createObjectURL(recordedBlob);
-        const formData = new FormData();
-          formData.append('video', recordedBlob);
-          now = formData
+         const formData = new FormData();
+           formData.append('video', recordedBlob);
+        
 
         // Convert the formData object to a Blob object
         const formDataBlob = new Blob([formData], { type: 'multipart/form-data' });
+        now = formDataBlob
 
         // Send the formDataBlob to the server using the fetch() API
-        const response = await fetch('https://crud-server-d24p.onrender.com/api/video', {
+        const response = await fetch('https://google-chrome-extension.onrender.com/api/upload', {
             method: 'POST',
-            body: formDataBlob,
+            body:formDataBlob,
         });
                
         if (response.status === 200) {
@@ -61,7 +62,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
     }
 
     if (message.action === "stopvideo") {
-        console.log(now);
+     //   console.log(now);
         console.log("stopping video");
         sendResponse(`processed: ${message.action}`);
         if (!recorder) return console.log("no recorder");
