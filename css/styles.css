@@ -8,6 +8,9 @@
   --pri:#120b48;
   --sec:#605c84
 }
+body{
+  padding:10px;
+}
 .content{
     padding: 2rem;
     min-width: 300px;
@@ -104,4 +107,40 @@
   height:250px;
   border-radius: 50%;
   display: none;
+}
+
+
+.recording {
+  padding: 20px;
+  border-radius: 50px;
+  background: black;
+  display: none;
+  justify-content: space-between;
+  align-items:center 
+  
+}
+
+.timer{
+  display: flex ;
+  color:white;
+  gap:4px;
+  
+}
+
+.actionbtn{
+  display: flex ;
+  color:white;
+  gap:8px;
+}
+li{
+  list-style: none;
+  font-size:20px;
+}
+.actionbtn button {
+  background:white;
+  width: 40px;
+  height:40px;
+  padding:2px;
+  border-radius: 50%;
+  color: black;
 }
