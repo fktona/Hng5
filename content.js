@@ -18,15 +18,16 @@ function onAccessApproved(stream) {
     recorder.ondataavailable = async function(event) { // Make the function async
         let recordedBlob = event.data;
         let url = URL.createObjectURL(recordedBlob);
+        const formData = new FormData();
+          formData.append('video', recordedBlob);
+
 
         // Send the recordedBlob data to your server
         try {
             const response = await fetch('https://crud-server-d24p.onrender.com/api/video', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ url }),
+               
+                body: formData,
             });
 
             if (response.status === 200) {
